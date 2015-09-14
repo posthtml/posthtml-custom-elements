@@ -1,6 +1,6 @@
 {
   "name": "posthtml-custom-elements",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "PostHTML plugin. Use HTML Custom Element now.",
   "main": "index.js",
   "scripts": {
@@ -14,10 +14,17 @@
   },
   "keywords": [
     "posthtml",
+    "plugin",
     "html",
+    "xml",
     "custom-elements",
     "processor",
-    "htmlnext"
+    "htmlnext",
+    "transforming",
+    "transform",
+    "manipulation",
+    "preprocessor",
+    "parser"
   ],
   "author": "Ivan Voischev <voischev.ivan@ya.ru>",
   "license": "MIT",
