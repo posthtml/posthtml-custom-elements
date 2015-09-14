@@ -1,5 +1,5 @@
 /* jshint mocha: true, maxlen: false */
-var posthtml = require('../build/index.js');
+var posthtml = require('posthtml');
 var custom = require('../index.js');
 var expect = require('chai').expect;
 
