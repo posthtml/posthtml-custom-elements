@@ -37,7 +37,7 @@ __Default__: `[]`
 
 Skip html5 tag for parse
 
-*Options* `{ skipTags: 'header' }`
+*Options* `{ skipTags: ['header'] }`
 
 ```html
 Input: <header>Test</header>
