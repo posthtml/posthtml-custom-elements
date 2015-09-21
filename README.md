@@ -14,7 +14,7 @@ posthtml()
     .use(customElements(options))
     .process(myCustomElementHTML)
     .then(function(result) {
-        clonsole.log(result.html);
+        console.log(result.html);
         // <span class="my-component"><span class="my-text text">Text</span></span>
     })
 ```
