@@ -36,6 +36,12 @@ describe('Custom Elements test', function() {
     });
 
     describe('Options', function() {
+        it('undefined', function(done) {
+            var html = '<div>Test</div>';
+            var referense = '<div>Test</div>';
+            test(html, referense, undefined, done);
+        });
+
         it('defaultTag', function(done) {
             var html = '<custom class="custom">Test</custom>';
             var referense = '<span class="custom">Test</span>';

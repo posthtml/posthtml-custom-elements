@@ -1,4 +1,5 @@
 module.exports = function(options) {
+    options = options || {};
     var defaultTag = options.defaultTag || 'div',
         skipTags = options.skipTags || [],
         html5tags = [
