@@ -1,4 +1,4 @@
-module.exports = function(options) {
+module.exports = function posthtmlCustomElements(options) {
     options = options || {};
     var defaultTag = options.defaultTag || 'div',
         skipTags = options.skipTags || [],
