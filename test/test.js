@@ -22,6 +22,12 @@ describe('Custom Elements test', function() {
             test(html, referense, {}, done);
         });
 
+        it('Simple test custome camel case tag', function(done) {
+            var html = '<customTag>Test</customTag`';
+            var referense = '<div class="customTag">Test</div>';
+            test(html, referense, {}, done);
+        });
+
         it('Class', function(done) {
             var html = '<custom class="test">Test</custom>';
             var referense = '<div class="custom test">Test</div>';
@@ -31,6 +37,24 @@ describe('Custom Elements test', function() {
         it('Class inside', function(done) {
             var html = '<custom class="custom">Test</custom>';
             var referense = '<div class="custom">Test</div>';
+            test(html, referense, {}, done);
+        });
+
+        it('Class inside', function(done) {
+            var html = '<cuStom class="custom">Test</custom>';
+            var referense = '<div class="cuStom custom">Test</div>';
+            test(html, referense, {}, done);
+        });
+
+        it('Tags', function(done) {
+            var html = '<header class="custom">Test</header>';
+            var referense = '<header class="custom">Test</header>';
+            test(html, referense, {}, done);
+        });
+
+        it('Camel Tags', function(done) {
+            var html = '<heaDer class="custom">Test</header>';
+            var referense = '<header class="custom">Test</header>';
             test(html, referense, {}, done);
         });
     });
@@ -48,6 +72,11 @@ describe('Custom Elements test', function() {
             test(html, referense, { defaultTag: 'span'}, done);
         });
 
+it('Class inside', function(done) {
+            var html = '<cuStom class="custom">Test</custom>';
+            var referense = '<div class="cuStom custom">Test</div>';
+            test(html, referense, {}, done);
+        });
         it('skipTags', function(done) {
             var html = '<header class="custom">Test</header>';
             var referense = '<div class="header custom">Test</div>';
