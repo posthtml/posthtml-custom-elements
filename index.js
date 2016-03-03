@@ -16,9 +16,9 @@ module.exports = function posthtmlCustomElements(options) {
     return function(tree) {
         tree.walk(function(node) {
             if(node.tag) {
-                var tag = node.tag.toLowerCase();
-                console.log(node.tag);
-                if (skipTags.indexOf(tag) !== -1 || html5tags.indexOf(node.tag) === -1) {
+                var tag = node.tag;
+
+                if (skipTags.indexOf(tag) !== -1 || html5tags.indexOf(tag.toLowerCase()) === -1) {
 
                     node.tag = defaultTag;
 
@@ -28,9 +28,11 @@ module.exports = function posthtmlCustomElements(options) {
                     }
 
                     var classes = node.attrs.class.split(' ');
-                    if(classes.indexOf(node.tag) === -1) {
-                        node.attrs.class = [node.tag].concat(classes).join(' ');
+                    if(classes.indexOf(tag) === -1) {
+                        node.attrs.class = [tag].concat(classes).join(' ');
                     }
+                } else {
+                    node.tag = node.tag.toLowerCase();
                 }
             }
             return node;
