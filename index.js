@@ -18,7 +18,7 @@ module.exports = function posthtmlCustomElements(options) {
             if(node.tag) {
                 var tag = node.tag;
 
-                if (skipTags.indexOf(tag) !== -1 || html5tags.indexOf(tag) === -1) {
+                if (skipTags.indexOf(tag) !== -1 || html5tags.indexOf(tag.toLowerCase()) === -1) {
 
                     node.tag = defaultTag;
 
@@ -31,6 +31,8 @@ module.exports = function posthtmlCustomElements(options) {
                     if(classes.indexOf(tag) === -1) {
                         node.attrs.class = [tag].concat(classes).join(' ');
                     }
+                } else {
+                    node.tag = node.tag.toLowerCase();
                 }
             }
             return node;
