@@ -37,7 +37,7 @@ posthtml({ plugins: custom({ defaultTag: 'span' }))
 | Name | Description | Default |
 | ---- | ----------- | ------- |
 | **defaultTag** | Tag used to replace the custom element tag name | `div` |
-| **skipTags** | Array of tags to be skipped in processing | `[]`
+| **skipTags** | Array of tags to be processed despite being a normal html tag | `[]`
 
 ## License
 

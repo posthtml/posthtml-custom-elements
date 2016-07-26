@@ -8,14 +8,34 @@ module.exports = function posthtmlCustomElements (options = {}) {
       if (node.type !== 'tag') return node
 
       // if its a standard tag or skipped, skip
-      if (node.name in skipTags || node.name in htmlTags) return node
+      // if it's an html tag, unless its a skipped tag
+      if (htmlTags.indexOf(node.name) > -1 && skipTags.indexOf(node.name) < 0) {
+        return node
+      }
 
       // look for a class attribute
       if (!node.attrs) { node.attrs = {} }
       if (!node.attrs.class) { node.attrs.class = [] }
 
-      // if there is a class attribute, push the new class name
+      // ensure array
       node.attrs.class = Array.prototype.concat(node.attrs.class)
+
+      // if there's already the same class, return
+      if (node.attrs.class.find((n) => n.content === node.name)) {
+        node.name = defaultTag
+        return node
+      }
+
+      // if there is already a class, add a space
+      if (node.attrs.class.length > 0) {
+        node.attrs.class.push({
+          type: 'text',
+          content: ' ',
+          location: node.location
+        })
+      }
+
+      // push the new class name
       node.attrs.class.push({
         type: 'text',
         content: node.name,

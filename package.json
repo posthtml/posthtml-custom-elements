@@ -1,27 +1,30 @@
 {
   "name": "posthtml-custom-elements",
-  "version": "1.0.3",
   "description": "PostHTML plugin. Use HTML Custom Element now.",
-  "main": "index.js",
-  "scripts": {
-    "test": "npm run lint && npm run mocha",
-    "mocha": "node_modules/.bin/_mocha",
-    "lint": "standard | snazzy"
-  },
-  "repository": "https://github.com/posthtml/posthtml-custom-elements",
-  "keywords": [
-    "posthtml-plugin",
-    "html",
-    "custom-elements"
-  ],
+  "version": "1.0.3",
   "author": "Ivan Voischev <voischev.ivan@ya.ru>",
-  "license": "MIT",
+  "ava": {
+    "verbose": "true"
+  },
   "bugs": "https://github.com/posthtml/posthtml-custom-elements/issues",
-  "homepage": "https://github.com/posthtml/posthtml-custom-elements",
   "devDependencies": {
     "ava": "^0.15.2",
     "posthtml": "static-dev/posthtml",
     "snazzy": "^4.0.0",
     "standard": "^7.1.2"
+  },
+  "homepage": "https://github.com/posthtml/posthtml-custom-elements",
+  "keywords": [
+    "custom-elements",
+    "html",
+    "posthtml-plugin"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "repository": "https://github.com/posthtml/posthtml-custom-elements",
+  "scripts": {
+    "lint": "standard | snazzy",
+    "mocha": "node_modules/.bin/_mocha",
+    "test": "npm run lint && npm run mocha"
   }
 }
