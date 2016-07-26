@@ -10,14 +10,17 @@ module.exports = function posthtmlCustomElements (options = {}) {
       // if its a standard tag or skipped, skip
       if (node.name in skipTags || node.name in htmlTags) return node
 
-      // if there is no class, set it
+      // look for a class attribute
       if (!node.attrs) { node.attrs = {} }
-      if (!node.attrs.class) { node.attrs.class = '' }
+      if (!node.attrs.class) { node.attrs.class = [] }
 
-      // if there are one or more classses, add another one and return
-      const tmp = node.attrs.class.split(' ')
-      tmp.push(node.name)
-      node.attrs.class = tmp.join(' ')
+      // if there is a class attribute, push the new class name
+      node.attrs.class = Array.prototype.concat(node.attrs.class)
+      node.attrs.class.push({
+        type: 'text',
+        content: node.name,
+        location: node.location
+      })
 
       // set the name to the default and return
       node.name = defaultTag
