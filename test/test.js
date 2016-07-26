@@ -1,87 +1,75 @@
-/* jshint mocha: true, maxlen: false */
-var posthtml = require('posthtml');
-var custom = require('../index.js');
-var expect = require('chai').expect;
+const posthtml = require('posthtml')
+const test = require('ava')
+const customElements = require('..')
 
-function test(html, referense, options, done) {
-    expect(posthtml([custom(options)])
-        .process(html)
-        .then(function(result) {
-            expect(referense).to.eql(result.html);
-            done();
-        }).catch(function(error) {
-            done(error);
-        }));
+test('Simple test', (t) => {
+  const html = '<custom>Test</custom>'
+  const expected = '<div class="custom">Test</div>'
+  return compare(t, html, expected)
+})
+
+test('Simple test custome camel case tag', (t) => {
+  const html = '<customTag>Test</customTag`'
+  const expected = '<div class="customTag">Test</div>'
+  return compare(t, html, expected)
+})
+
+test('Class', (t) => {
+  const html = '<custom class="test">Test</custom>'
+  const expected = '<div class="custom test">Test</div>'
+  return compare(t, html, expected)
+})
+
+test('Class inside', (t) => {
+  const html = '<custom class="custom">Test</custom>'
+  const expected = '<div class="custom">Test</div>'
+  return compare(t, html, expected)
+})
+
+test('Class inside', (t) => {
+  const html = '<cuStom class="custom">Test</custom>'
+  const expected = '<div class="cuStom custom">Test</div>'
+  return compare(t, html, expected)
+})
+
+test('Tags', (t) => {
+  const html = '<header class="custom">Test</header>'
+  const expected = '<header class="custom">Test</header>'
+  return compare(t, html, expected)
+})
+
+test('Camel Tags', (t) => {
+  const html = '<heaDer class="custom">Test</header>'
+  const expected = '<header class="custom">Test</header>'
+  return compare(t, html, expected)
+})
+
+test('undefined', (t) => {
+  const html = '<div>Test</div>'
+  const expected = '<div>Test</div>'
+  return compare(t, html, expected, undefined)
+})
+
+test('defaultTag', (t) => {
+  const html = '<custom class="custom">Test</custom>'
+  const expected = '<span class="custom">Test</span>'
+  return compare(t, html, expected, { defaultTag: 'span' })
+})
+
+test('Class inside', (t) => {
+  const html = '<cuStom class="custom">Test</custom>'
+  const expected = '<div class="cuStom custom">Test</div>'
+  return compare(t, html, expected)
+})
+
+test('skipTags', (t) => {
+  const html = '<header class="custom">Test</header>'
+  const expected = '<div class="header custom">Test</div>'
+  return compare(t, html, expected, { skipTags: ['header'] })
+})
+
+function compare (t, html, expected, options = {}) {
+  return posthtml({ plugins: [customElements(options)] })
+    .process(html)
+    .then((res) => { t.is(res.output, expected) })
 }
-
-describe('Custom Elements test', function() {
-    describe('DOM', function() {
-        it('Simple test', function(done) {
-            var html = '<custom>Test</custom>';
-            var referense = '<div class="custom">Test</div>';
-            test(html, referense, {}, done);
-        });
-
-        it('Simple test custome camel case tag', function(done) {
-            var html = '<customTag>Test</customTag`';
-            var referense = '<div class="customTag">Test</div>';
-            test(html, referense, {}, done);
-        });
-
-        it('Class', function(done) {
-            var html = '<custom class="test">Test</custom>';
-            var referense = '<div class="custom test">Test</div>';
-            test(html, referense, {}, done);
-        });
-
-        it('Class inside', function(done) {
-            var html = '<custom class="custom">Test</custom>';
-            var referense = '<div class="custom">Test</div>';
-            test(html, referense, {}, done);
-        });
-
-        it('Class inside', function(done) {
-            var html = '<cuStom class="custom">Test</custom>';
-            var referense = '<div class="cuStom custom">Test</div>';
-            test(html, referense, {}, done);
-        });
-
-        it('Tags', function(done) {
-            var html = '<header class="custom">Test</header>';
-            var referense = '<header class="custom">Test</header>';
-            test(html, referense, {}, done);
-        });
-
-        it('Camel Tags', function(done) {
-            var html = '<heaDer class="custom">Test</header>';
-            var referense = '<header class="custom">Test</header>';
-            test(html, referense, {}, done);
-        });
-    });
-
-    describe('Options', function() {
-        it('undefined', function(done) {
-            var html = '<div>Test</div>';
-            var referense = '<div>Test</div>';
-            test(html, referense, undefined, done);
-        });
-
-        it('defaultTag', function(done) {
-            var html = '<custom class="custom">Test</custom>';
-            var referense = '<span class="custom">Test</span>';
-            test(html, referense, { defaultTag: 'span'}, done);
-        });
-
-it('Class inside', function(done) {
-            var html = '<cuStom class="custom">Test</custom>';
-            var referense = '<div class="cuStom custom">Test</div>';
-            test(html, referense, {}, done);
-        });
-        it('skipTags', function(done) {
-            var html = '<header class="custom">Test</header>';
-            var referense = '<div class="header custom">Test</div>';
-            test(html, referense, { skipTags: ['header']}, done);
-        });
-    });
-});
-

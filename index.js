@@ -1,42 +1,29 @@
-module.exports = function posthtmlCustomElements(options) {
-    options = options || {};
-    var defaultTag = options.defaultTag || 'div',
-        skipTags = options.skipTags || [],
-        html5tags = [
-        'a','abbr','address','area','article','aside','audio','b','base','bdi','bdo','blockquote',
-        'body','br','button','canvas','caption','cite','code','col','colgroup','datalist','dd','del','details','dfn',
-        'dialog','div','dl','dt','em','embed','fieldset','figcaption','figure','footer','form',
-        'h1','h2','h3','h4','h5','h6','head','header','hr','html','i','iframe','img','input','ins','kbd','keygen',
-        'label','legend','li','link','main','map','mark','menu','menuitem','meta','meter','nav','noscript','object',
-        'ol','optgroup','option','output','p','param','pre','progress','q','rp','rt','ruby','s','samp',
-        'script','section','select','small','source','span','strong','style','sub','summary','sup',
-        'table','tbody','td','textarea','tfoot','th','thead','time','title','tr','track','u','ul','var','video','wbr'
-    ];
+module.exports = function posthtmlCustomElements (options = {}) {
+  const defaultTag = options.defaultTag || 'div'
+  const skipTags = options.skipTags || []
 
-    return function(tree) {
-        tree.walk(function(node) {
-            if(node.tag) {
-                var tag = node.tag;
+  return function (tree) {
+    return tree.map((node) => {
+      // if it's not a tag, skip
+      if (node.type !== 'tag') return node
 
-                if (skipTags.indexOf(tag) !== -1 || html5tags.indexOf(tag.toLowerCase()) === -1) {
+      // if its a standard tag or skipped, skip
+      if (node.name in skipTags || node.name in htmlTags) return node
 
-                    node.tag = defaultTag;
+      // if there is no class, set it
+      if (!node.attrs) { node.attrs = {} }
+      if (!node.attrs.class) { node.attrs.class = '' }
 
-                    if (!node.attrs) {
-                        node.attrs = { class: tag };
-                        return node;
-                    }
+      // if there are one or more classses, add another one and return
+      const tmp = node.attrs.class.split(' ')
+      tmp.push(node.name)
+      node.attrs.class = tmp.join(' ')
 
-                    var classes = node.attrs.class.split(' ');
-                    if(classes.indexOf(tag) === -1) {
-                        node.attrs.class = [tag].concat(classes).join(' ');
-                    }
-                } else {
-                    node.tag = node.tag.toLowerCase();
-                }
-            }
-            return node;
-        });
-        return tree;
-    };
-};
+      // set the name to the default and return
+      node.name = defaultTag
+      return node
+    })
+  }
+}
+
+const htmlTags = ['a', 'abbr', 'address', 'area', 'article', 'aside', 'audio', 'b', 'base', 'bdi', 'bdo', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'cite', 'code', 'col', 'colgroup', 'datalist', 'dd', 'del', 'details', 'dfn', 'dialog', 'div', 'dl', 'dt', 'em', 'embed', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hr', 'html', 'i', 'iframe', 'img', 'input', 'ins', 'kbd', 'keygen', 'label', 'legend', 'li', 'link', 'main', 'map', 'mark', 'menu', 'menuitem', 'meta', 'meter', 'nav', 'noscript', 'object', 'ol', 'optgroup', 'option', 'output', 'p', 'param', 'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'script', 'section', 'select', 'small', 'source', 'span', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track', 'u', 'ul', 'var', 'video', 'wbr']

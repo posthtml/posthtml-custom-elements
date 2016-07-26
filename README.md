@@ -1,34 +1,29 @@
+# PostHTML Custom Elements <img align="right" width="220" height="200" title="PostHTML logo" src="http://posthtml.github.io/posthtml/logo.svg">
+
 [![NPM][npm]][npm-url]
 [![Deps][deps]][deps-url]
 [![Tests][travis]][travis-url]
 [![Coverage][cover]][cover-url]
 
-<div align="center">
-  <img width="220" height="150" title="PostHTML" src="http://posthtml.github.io/posthtml/logo.svg">
-  <h1>Custom Elements Plugin</h1>
-  <p>Use custom elements now!</p>
-</div>
+## Installation
 
-<h2 align="center">Install</h2>
-
-```bash
-npm i -D posthtml-custom-elements
+```sh
+npm i posthtml-custom-elements --save
 ```
 
-<h2 align="center">Usage</h2>
+## Usage
 
 ```js
 const posthtml = require('posthtml')
+const customElements = require('posthtml-custom-elements')
 
-const custom = require('posthtml-custom-elements')
+const html = `<my-component>
+                <my-tex class="text">Text</my-text>
+              </my-component>`
 
-const component = `<my-component>
-                     <my-tex tclass="text">Text</my-text>
-                   </my-component>`
-
-posthtml([ custom({ defaultTag: 'span' }) ])
-    .process(component)
-    .then((result) => console.log(result.html))
+posthtml({ plugins: custom({ defaultTag: 'span' }))
+  .process(component)
+  .then((res) => console.log(result.output()))
 ```
 
 ```html
@@ -39,61 +34,14 @@ posthtml([ custom({ defaultTag: 'span' }) ])
 
 ## Options
 
-#### `defaultTag`
+| Name | Description | Default |
+| ---- | ----------- | ------- |
+| **defaultTag** | Tag used to replace the custom element tag name | `div` |
+| **skipTags** | Array of tags to be skipped in processing | `[]`
 
-__Default__: `div`
+## License
 
-Tag is used to replace the custom tag
-
-*Options* `{ defaultTag: 'span' }`
-
-```html
-<custom>Test</custom>
-```
-
-```html
-<span class="custom">Test</span>
-```
-
-#### `skipTags`
-
-__Default__: `[]`
-
-Skip HTML5 tag
-
-*Options* `{ skipTags: ['header'] }`
-
-```html
-<header>Test</header>
-```
-
-```html
-<div class="header">Test</div>
-```
-
-<h2 align="center">LICENSE</h2>
-
-> MIT License (MIT)
-
-> Copyright (c) 2016 PostHTML Ivan Voischev
-
-> Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-> The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Licensed under [MIT](LICENSE)
 
 [npm]: https://img.shields.io/npm/v/posthtml-custom-elements.svg
 [npm-url]: https://npmjs.com/package/posthtml-custom-elements

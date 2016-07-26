@@ -6,37 +6,22 @@
   "scripts": {
     "test": "npm run lint && npm run mocha",
     "mocha": "node_modules/.bin/_mocha",
-    "lint": "jshint . && jscs ."
+    "lint": "standard | snazzy"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/posthtml/posthtml-custom-elements.git"
-  },
+  "repository": "https://github.com/posthtml/posthtml-custom-elements",
   "keywords": [
-    "posthtml",
-    "plugin",
+    "posthtml-plugin",
     "html",
-    "xml",
-    "custom-elements",
-    "processor",
-    "htmlnext",
-    "transforming",
-    "transform",
-    "manipulation",
-    "preprocessor",
-    "parser"
+    "custom-elements"
   ],
   "author": "Ivan Voischev <voischev.ivan@ya.ru>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/posthtml/posthtml-custom-elements/issues"
-  },
-  "homepage": "https://github.com/posthtml/posthtml-custom-elements#readme",
+  "bugs": "https://github.com/posthtml/posthtml-custom-elements/issues",
+  "homepage": "https://github.com/posthtml/posthtml-custom-elements",
   "devDependencies": {
-    "chai": "^3.2.0",
-    "jscs": "^2.1.1",
-    "jshint": "^2.8.0",
-    "mocha": "^2.3.2",
-    "posthtml": "^0.8.3"
+    "ava": "^0.15.2",
+    "posthtml": "static-dev/posthtml",
+    "snazzy": "^4.0.0",
+    "standard": "^7.1.2"
   }
 }
