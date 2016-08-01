@@ -6,9 +6,7 @@ module.exports = function posthtmlCustomElements (options = {}) {
 
   return function (tree) {
     return modifyNodes(tree, (node) => {
-      if (node.type === 'tag' && (htmlTags.indexOf(node.name) < 0 || skipTags.indexOf(node.name) > -1)) {
-        return node
-      }
+      (node.type === 'tag' && (htmlTags.indexOf(node.name) < 0 || skipTags.indexOf(node.name) > -1))
     }, (node) => {
       // look for a class attribute
       if (!node.attrs) { node.attrs = {} }
