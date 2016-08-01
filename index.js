@@ -1,24 +1,18 @@
+const {modifyNodes} = require('posthtml-plugin-util')
+
 module.exports = function posthtmlCustomElements (options = {}) {
   const defaultTag = options.defaultTag || 'div'
   const skipTags = options.skipTags || []
 
   return function (tree) {
-    return tree.map((node) => {
-      // if it's not a tag, skip
-      if (node.type !== 'tag') return node
-
-      // if its a standard tag or skipped, skip
-      // if it's an html tag, unless its a skipped tag
-      if (htmlTags.indexOf(node.name) > -1 && skipTags.indexOf(node.name) < 0) {
+    return modifyNodes(tree, (node) => {
+      if (node.type === 'tag' && (htmlTags.indexOf(node.name) < 0 || skipTags.indexOf(node.name) > -1)) {
         return node
       }
-
+    }, (node) => {
       // look for a class attribute
       if (!node.attrs) { node.attrs = {} }
       if (!node.attrs.class) { node.attrs.class = [] }
-
-      // ensure array
-      node.attrs.class = Array.prototype.concat(node.attrs.class)
 
       // if there's already the same class, return
       if (node.attrs.class.find((n) => n.content === node.name)) {

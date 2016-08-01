@@ -26,5 +26,8 @@
     "lint": "standard | snazzy",
     "mocha": "node_modules/.bin/_mocha",
     "test": "npm run lint && npm run mocha"
+  },
+  "dependencies": {
+    "posthtml-plugin-util": "^0.1.0"
   }
 }
