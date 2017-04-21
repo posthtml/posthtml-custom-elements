@@ -23,8 +23,11 @@ const posthtml = require('posthtml')
 const custom = require('posthtml-custom-elements')
 
 const component = `<my-component>
-                     <my-tex tclass="text">Text</my-text>
-                   </my-component>`
+                    <text-h1 class="text">Text</text-h1>
+                    <ul>
+                      <custome tag="li">list</custome>
+                    </ul>
+                  </my-component>`
 
 posthtml([ custom({ defaultTag: 'span' }) ])
     .process(component)
@@ -33,7 +36,10 @@ posthtml([ custom({ defaultTag: 'span' }) ])
 
 ```html
 <span class="my-component">
-  <span class="my-text text">Text</span>
+  <span class="text-h1 text">Text</span>
+  <ul>
+    <li>list</li>
+  </ul>
 </span>
 ```
 
@@ -69,6 +75,18 @@ Skip HTML5 tag
 
 ```html
 <div class="header">Test</div>
+```
+
+## Support
+
+#### `attribute tag`
+
+```html
+<custome tag="pre">Test</custome>
+```
+
+```html
+<pre>Test</pre>
 ```
 
 <h2 align="center">LICENSE</h2>
