@@ -4,8 +4,9 @@
   "description": "PostHTML plugin. Use HTML Custom Element now.",
   "main": "index.js",
   "scripts": {
-    "test": "npm run lint && npm run mocha",
-    "mocha": "node_modules/.bin/_mocha",
+    "test": "npm run lint && mocha -R dot && npm run cover",
+    "clean": "rm -rf coverage jsdoc-api",
+    "cover": "istanbul cover --report text --report html --report lcov node_modules/mocha/bin/_mocha -- -R tap",
     "lint": "jshint . && jscs ."
   },
   "repository": {
@@ -34,6 +35,7 @@
   "homepage": "https://github.com/posthtml/posthtml-custom-elements#readme",
   "devDependencies": {
     "chai": "^3.2.0",
+    "istanbul": "^0.4.2",
     "jscs": "^3.0.7",
     "jshint": "^2.8.0",
     "mocha": "^3.2.0",

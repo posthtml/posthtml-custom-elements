@@ -1,9 +1,16 @@
+sudo: false
 language: node_js
 node_js:
-  - v7
-  - v6
-  - v5
-  - v4
+  - "stable"
+  - "4"
+  - "0.12"
+  - "0.10"
+
+env:
+  global:
+    - ISTANBUL_COVERAGE: yes
 
 after_success:
-- './node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls'
+  - npm i coveralls
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && echo "Coverage data was sent to coveralls!"
+
