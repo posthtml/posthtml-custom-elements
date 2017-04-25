@@ -119,7 +119,7 @@ SOFTWARE.
 [deps]: https://david-dm.org/posthtml/posthtml-custom-elements.svg
 [deps-url]: https://david-dm.org/posthtml/posthtml-custom-elements
 
-[travis]: http://img.shields.io/travis/posthtml/posthtml-custom-elements.svg
+[travis]: http://img.shields.io/travis/posthtml/posthtml-custom-elements/master.svg
 [travis-url]: https://travis-ci.org/posthtml/posthtml-custom-elements
 
 [cover]: https://coveralls.io/repos/github/posthtml/posthtml-custom-elements/badge.svg?branch=master
