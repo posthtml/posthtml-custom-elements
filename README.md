@@ -23,8 +23,11 @@ const posthtml = require('posthtml')
 const custom = require('posthtml-custom-elements')
 
 const component = `<my-component>
-                     <my-tex tclass="text">Text</my-text>
-                   </my-component>`
+                    <text-h1 class="text">Text</text-h1>
+                    <ul>
+                      <custome tag="li">list</custome>
+                    </ul>
+                  </my-component>`
 
 posthtml([ custom({ defaultTag: 'span' }) ])
     .process(component)
@@ -33,7 +36,10 @@ posthtml([ custom({ defaultTag: 'span' }) ])
 
 ```html
 <span class="my-component">
-  <span class="my-text text">Text</span>
+  <span class="text-h1 text">Text</span>
+  <ul>
+    <li>list</li>
+  </ul>
 </span>
 ```
 
@@ -71,6 +77,18 @@ Skip HTML5 tag
 <div class="header">Test</div>
 ```
 
+## Support
+
+#### `attribute tag`
+
+```html
+<custome tag="pre">Test</custome>
+```
+
+```html
+<pre>Test</pre>
+```
+
 <h2 align="center">LICENSE</h2>
 
 > MIT License (MIT)
@@ -101,7 +119,7 @@ SOFTWARE.
 [deps]: https://david-dm.org/posthtml/posthtml-custom-elements.svg
 [deps-url]: https://david-dm.org/posthtml/posthtml-custom-elements
 
-[travis]: http://img.shields.io/travis/posthtml/posthtml-custom-elements.svg
+[travis]: http://img.shields.io/travis/posthtml/posthtml-custom-elements/master.svg
 [travis-url]: https://travis-ci.org/posthtml/posthtml-custom-elements
 
 [cover]: https://coveralls.io/repos/github/posthtml/posthtml-custom-elements/badge.svg?branch=master

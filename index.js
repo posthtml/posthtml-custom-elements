@@ -24,13 +24,19 @@ module.exports = function posthtmlCustomElements(options) {
 
                     if (!node.attrs) {
                         node.attrs = { class: tag };
-                        return node;
+                    }
+
+                    if (node.attrs.tag) {
+                        node.tag = node.attrs.tag;
+                        delete node.attrs.tag;
                     }
 
                     var classes = node.attrs.class.split(' ');
                     if(classes.indexOf(tag) === -1) {
                         node.attrs.class = [tag].concat(classes).join(' ');
                     }
+
+                    return node;
                 } else {
                     node.tag = node.tag.toLowerCase();
                 }
