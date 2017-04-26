@@ -1,6 +1,6 @@
 {
   "name": "posthtml-custom-elements",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "PostHTML plugin. Use HTML Custom Element now.",
   "main": "index.js",
   "scripts": {
