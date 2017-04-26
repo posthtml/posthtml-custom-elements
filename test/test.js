@@ -46,6 +46,12 @@ describe('Custom Elements test', function() {
             test(html, referense, {}, done);
         });
 
+        it('Attrs tags', function(done) {
+            var html = '<custom tag="li" class="custom">Test</custom>';
+            var referense = '<li class="custom">Test</li>';
+            test(html, referense, {}, done);
+        });
+
         it('Tags', function(done) {
             var html = '<header class="custom">Test</header>';
             var referense = '<header class="custom">Test</header>';
