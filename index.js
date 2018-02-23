@@ -30,6 +30,10 @@ module.exports = function posthtmlCustomElements(options) {
                         node.tag = node.attrs.tag;
                         delete node.attrs.tag;
                     }
+                    
+                    if (typeof node.attrs.class !== 'string') {
+                        node.attrs.class = '';
+                    }
 
                     var classes = node.attrs.class.split(' ');
                     if(classes.indexOf(tag) === -1) {
