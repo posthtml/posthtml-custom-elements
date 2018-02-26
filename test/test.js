@@ -22,8 +22,8 @@ describe('Custom Elements test', function() {
             test(html, referense, {}, done);
         });
 
-        it('Simple test custome camel case tag', function(done) {
-            var html = '<customTag>Test</customTag`';
+        it('Simple test custom camel case tag', function(done) {
+            var html = '<customTag>Test</customTag>';
             var referense = '<div class="customTag">Test</div>';
             test(html, referense, {}, done);
         });
