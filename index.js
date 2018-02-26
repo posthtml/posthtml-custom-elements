@@ -31,6 +31,10 @@ module.exports = function posthtmlCustomElements(options) {
                         delete node.attrs.tag;
                     }
 
+                    if (typeof node.attrs.class !== 'string') {
+                        node.attrs.class = tag;
+                    }
+
                     var classes = node.attrs.class.split(' ');
                     if(classes.indexOf(tag) === -1) {
                         node.attrs.class = [tag].concat(classes).join(' ');
