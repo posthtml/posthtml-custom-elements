@@ -28,6 +28,12 @@ describe('Custom Elements test', function() {
             test(html, referense, {}, done);
         });
 
+        it('Simple test custom camel case tag include attribute', function(done) {
+            var html = '<customTag name="tset">Test</customTag>';
+            var referense = '<div name="tset" class="customTag">Test</div>';
+            test(html, referense, {}, done);
+        });
+
         it('Class', function(done) {
             var html = '<custom class="test">Test</custom>';
             var referense = '<div class="custom test">Test</div>';
