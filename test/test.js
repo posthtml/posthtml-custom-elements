@@ -91,7 +91,7 @@ it('Class inside', function(done) {
         });
         it('skipTags', function(done) {
             var html = '<header class="custom">Test</header>';
-            var referense = '<div class="header custom">Test</div>';
+            var referense = '<header class="custom">Test</header>';
             test(html, referense, { skipTags: ['header']}, done);
         });
     });
