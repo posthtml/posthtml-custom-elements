@@ -74,7 +74,7 @@ Skip HTML5 tag
 ```
 
 ```html
-<div class="header">Test</div>
+<header>Test</header>
 ```
 
 ## Support
